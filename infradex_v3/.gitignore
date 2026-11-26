@@ -1,0 +1,12 @@
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+*.db
+.chroma/
+.env
+quiz_drafts.json
+backend/static/
+.index/
+source_check.csv
+eval_result.csv

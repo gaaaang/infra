@@ -1,0 +1,24 @@
+# Render Blueprint — 저장소 연결 후 "New > Blueprint"로 이 파일을 선택하면 서비스가 만들어집니다.
+services:
+  - type: web
+    name: infradex
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free            # 무료 플랜: 15분 미사용 시 잠들고, 재시작하면 진도 데이터가 초기화됩니다
+    healthCheckPath: /api/health
+    envVars:
+      - key: AZURE_OPENAI_ENDPOINT
+        sync: false       # 대시보드에서 직접 입력
+      - key: AZURE_OPENAI_API_KEY
+        sync: false
+      - key: AZURE_OPENAI_CHAT_DEPLOYMENT
+        value: gpt-4o-mini
+      - key: AZURE_OPENAI_EMBEDDING_DEPLOYMENT
+        value: text-embedding-3-small
+      - key: STATS_TOKEN
+        generateValue: true   # /stats 페이지 접근용 비밀값 (대시보드에서 확인)
+    # 진도 데이터를 유지하려면 유료 플랜(Starter 이상)으로 바꾸고 아래 주석을 해제하세요.
+    # disk:
+    #   name: infradex-data
+    #   mountPath: /data
+    #   sizeGB: 1

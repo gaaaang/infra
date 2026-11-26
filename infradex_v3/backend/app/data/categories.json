@@ -1,0 +1,7 @@
+[
+  {"id": "core",    "name": "AI 핵심 기술",     "code": "A", "order": 1, "description": "데이터센터 실무 용어를 이해하기 위한 기반 지식. RAG, 임베딩, 토큰 등."},
+  {"id": "gpu",     "name": "GPU·컴퓨팅",       "code": "G", "order": 2, "description": "GPU 클러스터, HBM, 분산 학습 등 AI 연산 자원 관련 용어."},
+  {"id": "network", "name": "네트워크",         "code": "N", "order": 3, "description": "InfiniBand, RDMA, NVLink 등 GPU 간 고속 통신 용어."},
+  {"id": "ops",     "name": "서버·인프라 운영", "code": "O", "order": 4, "description": "Kubernetes, 모니터링, 장애 대응, 전력·냉각 등 운영 현장 용어."},
+  {"id": "service", "name": "AI 서비스 운영",   "code": "S", "order": 5, "description": "LLM 서빙, MLOps, 양자화 등 모델을 서비스로 운영하는 관점의 용어."}
+]

@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-paper font-sans text-[15px] leading-relaxed text-ink antialiased;
+    word-break: keep-all; /* 한글 어절 단위 줄바꿈 */
+  }
+  h1, h2, h3 { letter-spacing: -0.02em; }
+  :focus-visible { outline: 2px solid #1E2430; outline-offset: 2px; border-radius: 6px; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-ink px-4 py-2.5 text-[15px] font-semibold text-white
+      shadow-sm transition hover:bg-ink-soft active:scale-[.98] disabled:opacity-40;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-rule bg-sheet px-4 py-2.5 text-[15px]
+      font-semibold text-ink transition hover:border-ink-mute/50 hover:bg-paper active:scale-[.98] disabled:opacity-40;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-rule bg-sheet px-3.5 py-1.5 text-sm text-ink-soft
+      transition hover:border-ink-mute/60 hover:text-ink;
+  }
+  .chip-on { @apply border-ink bg-ink text-white hover:border-ink hover:text-white; }
+  .card-link {
+    @apply block rounded-xl border border-rule bg-sheet p-5 shadow-sheet transition hover:-translate-y-0.5 hover:shadow-lift;
+  }
+  .input {
+    @apply w-full rounded-xl border border-rule bg-sheet px-4 py-3 text-base shadow-sheet transition
+      placeholder:text-ink-mute focus:border-ink/40 focus:outline-none focus:ring-4 focus:ring-ink/5;
+  }
+  .highlight { background: linear-gradient(transparent 60%, rgba(243, 201, 79, 0.45) 60%); }
+  .stamp { transform: rotate(-4deg); }
+}
+
+.toast-in { animation: toast .35s ease-out; }
+@keyframes toast { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+.stamp-in { animation: stamp .45s cubic-bezier(.2, 1.6, .4, 1); }
+@keyframes stamp { from { opacity: 0; transform: rotate(-4deg) scale(1.8); } to { opacity: 1; transform: rotate(-4deg) scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-in, .stamp-in { animation: none; }
+  .card-link:hover { transform: none; }
+}
+
+/* ---------- 카드 연출 */
+.flip-scene { perspective: 1200px; }
+.flip-inner { position: relative; transition: transform .55s cubic-bezier(.3,.7,.3,1); transform-style: preserve-3d; }
+.flip-inner.is-flipped { transform: rotateY(180deg); }
+.flip-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flip-back { transform: rotateY(180deg); }
+
+.card-reveal { animation: reveal .8s cubic-bezier(.3,.7,.3,1) both; }
+@keyframes reveal {
+  0% { transform: rotateY(180deg) scale(.9); opacity: .4; }
+  60% { transform: rotateY(-8deg) scale(1.04); opacity: 1; }
+  100% { transform: none; }
+}
+.rise-in { animation: rise .45s ease-out both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner { transition: none; }
+  .card-reveal, .rise-in { animation: none; }
+}

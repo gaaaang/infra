@@ -1,0 +1,9 @@
+**/node_modules
+**/dist
+**/__pycache__
+**/.pytest_cache
+**/*.db
+**/.index
+**/.env
+.git
+backend/static
